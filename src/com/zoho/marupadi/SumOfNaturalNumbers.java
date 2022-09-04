@@ -16,7 +16,7 @@ public class SumOfNaturalNumbers
 		int sum =0;
 		for(int start = 1;start <= number;start++)
 		{
-			//sum to natural numbers
+			
 			sum += start;
 		}
 		System.out.println("sum :"+sum);
@@ -27,7 +27,7 @@ public class SumOfNaturalNumbers
 		{
 			int temp = sum % 10;
 			
-			//swap to find the largest value
+			
 			if(largestDigit < temp)
 			{
 				largestDigit = temp;

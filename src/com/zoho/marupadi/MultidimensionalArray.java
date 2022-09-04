@@ -7,7 +7,7 @@ public class MultidimensionalArray
 
 static void leftRotate(int matrix[][])  
 {  
-	//swapping elements of rows by columns that gives the transpose matrix  
+	  
 	for(int i=0;i<matrix.length;i++)  
 	{  
 		for(int j=i;j<matrix.length;j++)  
@@ -33,7 +33,7 @@ static void leftRotate(int matrix[][])
 			high--;  
 		}  
 	}  
-	//prints the matrix elements after left rotation  
+	  
 	System.out.println("Matrix After Left Rotation: ");  
 	for(int i=0;i<matrix.length;i++)  
 	{  
@@ -44,7 +44,7 @@ static void leftRotate(int matrix[][])
 	System.out.println();  
 	}  
 }  
-//driver code  
+  
 	public static void main(String args[])  
 	{  
 
@@ -53,14 +53,14 @@ static void leftRotate(int matrix[][])
 
 		Scanner reader = new Scanner(System.in);
 		
-		//initialize number of rows and columns  
+		  
 		System.out.println("Enter the rows :");
 		int rows = reader.nextInt();
 		
 		System.out.println("Enter the columns : ");
 		int columns = reader.nextInt();  
 		
-		//creating a  matrix
+		
 		int matrix[][] =new int[rows][columns];
 		
 		System.out.println("Enter the array values :");
@@ -73,21 +73,21 @@ static void leftRotate(int matrix[][])
 			
 		}
 			
-		//prints the matrix  
+		  
 		System.out.println("The Original Matrix is: ");  
 		
-		//loop for rows  
+		  
 		for(int rowIndex=0;rowIndex < rows;rowIndex++)  
 		{  
-		//loop for column      
+		      
 		for(int columnIndex=0;columnIndex < columns;columnIndex++)  
 		{  
-		//prints elements of the matrix       
+		       
 		System.out.print(matrix[rowIndex][columnIndex]+" ");  
 		}  
 		System.out.println();  
 		}  
-		//function calling   
+		   
 		leftRotate(matrix);  
 		}  
 	}
