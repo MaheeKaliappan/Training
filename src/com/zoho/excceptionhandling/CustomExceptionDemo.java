@@ -1,4 +1,4 @@
-package com.zoho.arrays;
+package com.zoho.excceptionhandling;
 
 import java.util.Scanner;
 
