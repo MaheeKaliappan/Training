@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DemoThrowAndThrows {
 
-	  public static int divideNum(int firstNumber, int secondNumber) throws ArithmeticException {  
+	  public static int divideNum(int firstNumber, int secondNumber) {  
 	        
 	        return firstNumber / secondNumber;  
 	    }  
@@ -20,7 +20,7 @@ public class DemoThrowAndThrows {
 	            System.out.println(divideNum(firstNumber,secondNumber));  
 	        }  
 	        catch (ArithmeticException e){  
-	            System.out.println("Number cannot be divided by 0");  
+	           throw new ArithmeticException("Number cannot divide by zero");
 	        }  
 	          
 	         
