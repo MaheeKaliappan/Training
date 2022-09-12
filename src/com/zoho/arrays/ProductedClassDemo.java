@@ -1,8 +1,8 @@
 package com.zoho.arrays;
 
-public class ProductedClassDemo {
+ public class ProductedClassDemo {
 	
-	public void productedClassMethod()
+	protected void productedClassMethod()
 	{
 		System.out.println("producted demo methood");
 	}

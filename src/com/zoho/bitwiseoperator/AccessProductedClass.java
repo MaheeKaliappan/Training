@@ -13,26 +13,34 @@ class Child extends Parent {
 	Child() {
 		System.out.println("child");
 	}
+	public static void main(String [] a) {
+		Child obj1 = new Child();
+		obj1.productedClassMethod();
+	}
 
 }
 
 class GrantChild extends Child {
 	GrantChild() {
 		System.out.println("GrantChild");
+		
+	}
+	public static void main(String [] a) {
+		GrantChild obj = new GrantChild();
+		obj.productedClassMethod();
 	}
 
 }
 
-public class AccessProductedClass {
+/*public class AccessProductedClass extend {
 
 	public static void main(String[] args) {
 
-		Parent parent = new Parent();
-		parent.productedClassMethod();
-		Child child = new Child();
-		child.productedClassMethod();
 		GrantChild grantChild = new GrantChild();
-		grantChild.productedClassMethod();
+		Child obj3 = new Child();
+		obj3.
+		
+		
 	}
 
-}
+}*/
