@@ -96,8 +96,8 @@ public class StudentManagement {
 				do {
 					System.out.println("Ug Percentage");
 					studentMarkDetails.setUgPercentage(reader.nextInt());
-				}while((studentMarkDetails.getUgPercentage()<50 )||(studentMarkDetails.getUgPercentage() >95));
-				
+				} while ((studentMarkDetails.getUgPercentage() < 50) || (studentMarkDetails.getUgPercentage() > 95));
+
 				student.setStudentRegisterNumber(pgStudentRegisterId);
 				student.setStudentMarkDetails(studentMarkDetails);
 				if (dataValue.equals("update")) {
@@ -138,7 +138,6 @@ public class StudentManagement {
 		if (studentDepartment.equalsIgnoreCase("pg")) {
 			if (pgStudents.size() > studentRegisterId - 1) {
 				if (pgStudents.contains(pgStudents.get(studentRegisterId - 1))) {
-					// pgStudents.remove(studentRegisterId - 1);
 					studentFind = true;
 					insertStudentData(dataValue);
 				}
@@ -147,7 +146,6 @@ public class StudentManagement {
 		} else {
 			if (ugStudents.size() > studentRegisterId - 1) {
 				if (ugStudents.contains(ugStudents.get(studentRegisterId - 1))) {
-					// ugStudents.remove(studentRegisterId - 1);
 					insertStudentData(dataValue);
 					studentFind = true;
 				}
