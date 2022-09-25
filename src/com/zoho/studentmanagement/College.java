@@ -6,21 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class College {
-	
-	
-
 	public static void main(String[] args) {
 
 		List<Student> studentDetails = new ArrayList<Student>();
 		Scanner reader = new Scanner(System.in);
 		StudentManagement studentManagement = new StudentManagement();
-		
 
 		char choice = ' ';
 
 		do {
 			int userChoice = studentManagement.selectOption();
-			
+
 			switch (userChoice) {
 			case 1:
 				String dataValue = "add";
@@ -49,7 +45,4 @@ public class College {
 
 	}
 
-	
-
-	
 }
