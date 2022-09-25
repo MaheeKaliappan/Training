@@ -1,17 +1,12 @@
 package com.zoho.studentmanagement;
 
 public class StudentAddress {
-	private Integer doornumber;
+	private String doornumber;
 	private String streetName;
 	private String district;
-	private Integer pincode;
+	private String pincode;
 	
-	public Integer getDoornumber() {
-		return doornumber;
-	}
-	public void setDoornumber(Integer doornumber) {
-		this.doornumber = doornumber;
-	}
+	
 	public String getStreetName() {
 		return streetName;
 	}
@@ -24,10 +19,17 @@ public class StudentAddress {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	public Integer getPincode() {
+	public String getDoornumber() {
+		return doornumber;
+	}
+	public void setDoornumber(String doornumber) {
+		this.doornumber = doornumber;
+	}
+	public String getPincode() {
 		return pincode;
 	}
-	public void setPincode(Integer pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
+	
 }
