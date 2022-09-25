@@ -5,6 +5,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.naming.InvalidNameException;
+
 public class StudentManagement {
 
 	Scanner reader = new Scanner(System.in);
@@ -29,6 +31,8 @@ public class StudentManagement {
 		return userChoice;
 	}
 
+	ConstraintsChecking constraintsChecking = new ConstraintsChecking();
+
 	public void insertStudentData(String dataValue) {
 		Boolean ugStudent = false;
 		Boolean pgStudent = false;
@@ -37,92 +41,190 @@ public class StudentManagement {
 		StudentDepartment studentDepartment = new StudentDepartment();
 		StudentMarkDetails studentMarkDetails = new StudentMarkDetails();
 		StudentPersonalDetails studentPersonalDetails = new StudentPersonalDetails();
-		try {
-			System.out.println("\nEnter the Student Name");
-			student.setStudentName(reader.next());
 
-			System.out.println("Note : Age Must Be Greater than 18");
-			do {
-				System.out.println("\nEnter Student Age");
-				student.setAge(reader.nextInt());
-
-			} while ((student.getAge() < 18) || (student.getAge() > 40));
-
-			System.out.println("\nStudent Course Details");
-			System.out.println("Major");
-			studentDepartment.setStudentCourseName(reader.next());
-			System.out.println("\nUg Or Pg");
-			studentDepartment.setStudentDepartmentName(reader.next());
-			if (studentDepartment.getStudentDepartmentName().equalsIgnoreCase("pg")) {
-				pgStudent = true;
+		System.out.println("\nEnter the Student Name");
+		boolean validName = true;
+		while (validName) {
+			validName = constraintsChecking.nameValidation(student);
+			if (validName) {
+				validName = false;
 			} else {
-				ugStudent = true;
+				validName = true;
 			}
-			student.setStudentDepartment(studentDepartment);
-			System.out.println("\nStudent Personal Details");
-			System.out.println("Mother Name");
-			studentPersonalDetails.setMotherName(reader.next());
-			System.out.println("Father Name");
-			studentPersonalDetails.setStudentFatherName(reader.next());
-			System.out.println("\nAddress");
-			System.out.println("Door Number");
-			studentAddress.setDoornumber(reader.nextInt());
-			System.out.println("Street Name");
-			studentAddress.setStreetName(reader.next());
-			System.out.println("District");
-			studentAddress.setDistrict(reader.next());
-			System.out.println("Pincode");
-			studentAddress.setPincode(reader.nextInt());
-			studentPersonalDetails.setStudentAddress(studentAddress);
-			student.setStudentPersonalDetails(studentPersonalDetails);
-			System.out.println("\nEducational Details");
-			System.out.println("SSLC School Name");
-			studentMarkDetails.setSslcSchoolName(reader.next());
-			do {
-				System.out.println("SSLC mark");
-				studentMarkDetails.setSslcMark(reader.nextInt());
-			} while ((studentMarkDetails.getSslcMark() < 300) || (studentMarkDetails.getSslcMark() > 498));
+		}
+		boolean validAge = true;
+		while (validAge) {
+			validAge = constraintsChecking.validAge(student);
+			if (validAge) {
+				validAge = false;
+			} else {
+				validAge = true;
+			}
+		}
 
-			System.out.println("HSC School Name");
-			studentMarkDetails.setHscSchoolName(reader.next());
-			do {
-				System.out.println("HSC Mark");
-				studentMarkDetails.setHscMark(reader.nextInt());
-			} while ((studentMarkDetails.getHscMark() < 600) || (studentMarkDetails.getHscMark() > 1195));
+		System.out.println("\nStudent Course Details");
+		System.out.println("Major");
+		studentDepartment.setStudentCourseName(reader.next());
+		boolean validDepartment = true;
+		while (validDepartment) {
+			validDepartment = constraintsChecking.departmentValidation(studentDepartment);
+			if (validDepartment) {
+				validDepartment = false;
+			} else {
+				validDepartment = true;
+			}
+		}
 
-			if (pgStudent) {
-				System.out.println("Ug College Name");
-				studentMarkDetails.setUgCollegeName(reader.next());
-				do {
-					System.out.println("Ug Percentage");
-					studentMarkDetails.setUgPercentage(reader.nextInt());
-				} while ((studentMarkDetails.getUgPercentage() < 50) || (studentMarkDetails.getUgPercentage() > 95));
+		if (studentDepartment.getStudentDepartmentName().equalsIgnoreCase("pg")) {
+			pgStudent = true;
+		} else {
+			ugStudent = true;
+		}
+		student.setStudentDepartment(studentDepartment);
+		System.out.println("\nStudent Personal Details");
+		boolean validMotherName = true;
+		while (validMotherName) {
+			validMotherName = constraintsChecking.motherNameValidation(studentPersonalDetails);
+			if (validMotherName) {
+				validMotherName = false;
+			} else {
+				validMotherName = true;
+			}
+		}
+		boolean validFatherName = true;
+		while (validFatherName) {
+			validFatherName = constraintsChecking.fatherNameValidation(studentPersonalDetails);
+			if (validFatherName) {
+				validFatherName = false;
+			} else {
+				validFatherName = true;
+			}
+		}
+		System.out.println("\nAddress");
+		boolean validDoorNo = true;
+		while (validDoorNo) {
+			validDoorNo = constraintsChecking.validDoorNo(studentAddress);
+			if (validDoorNo) {
+				validDoorNo = false;
+			} else {
+				validDoorNo = true;
+			}
+		}
+		boolean streetNameValidation = true;
+		while (streetNameValidation) {
+			streetNameValidation = constraintsChecking.streetNameValidation(studentAddress);
+			if (streetNameValidation) {
+				streetNameValidation = false;
+			} else {
+				streetNameValidation = true;
+			}
+		}
 
+		boolean districtNameValidation = true;
+		while (districtNameValidation) {
+			districtNameValidation = constraintsChecking.districtNameValidation(studentAddress);
+			if (districtNameValidation) {
+				districtNameValidation = false;
+			} else {
+				districtNameValidation = true;
+			}
+		}
+		boolean pincodeValidation = true;
+		while (pincodeValidation) {
+			pincodeValidation = constraintsChecking.pincodeValidation(studentAddress);
+			if (pincodeValidation) {
+				pincodeValidation = false;
+			} else {
+				pincodeValidation = true;
+			}
+		}
+
+		studentPersonalDetails.setStudentAddress(studentAddress);
+		student.setStudentPersonalDetails(studentPersonalDetails);
+		System.out.println("\nEducational Details");
+		boolean sslcSchoolNameValidation = true;
+		while (sslcSchoolNameValidation) {
+			sslcSchoolNameValidation = constraintsChecking.sslcSchoolNameValidation(studentMarkDetails);
+			if (sslcSchoolNameValidation) {
+				sslcSchoolNameValidation = false;
+			} else {
+				sslcSchoolNameValidation = true;
+			}
+		}
+
+		boolean validSslcMark = true;
+		while (validSslcMark) {
+			validSslcMark = constraintsChecking.validSslcMark(studentMarkDetails);
+			if (validSslcMark) {
+				validSslcMark = false;
+			} else {
+				validSslcMark = true;
+			}
+		}
+
+		boolean hscSchoolNameValidation = true;
+		while (hscSchoolNameValidation) {
+			hscSchoolNameValidation = constraintsChecking.hscSchoolNameValidation(studentMarkDetails);
+			if (hscSchoolNameValidation) {
+				hscSchoolNameValidation = false;
+			} else {
+				hscSchoolNameValidation = true;
+			}
+		}
+
+		boolean validHscMark = true;
+		while (validHscMark) {
+			validHscMark = constraintsChecking.validHscMark(studentMarkDetails);
+			if (validHscMark) {
+				validHscMark = false;
+			} else {
+				validHscMark = true;
+			}
+		}
+
+		if (pgStudent) {
+			boolean ugCollegeNameValidation = true;
+			while (ugCollegeNameValidation) {
+				ugCollegeNameValidation = constraintsChecking.ugCollegeNameValidation(studentMarkDetails);
+				if (ugCollegeNameValidation) {
+					ugCollegeNameValidation = false;
+				} else {
+					ugCollegeNameValidation = true;
+				}
+			}
+
+			boolean validUgPercentage = true;
+			while (validUgPercentage) {
+				validUgPercentage = constraintsChecking.validUgPercentage(studentMarkDetails);
+				if (validUgPercentage) {
+					validUgPercentage = false;
+				} else {
+					validUgPercentage = true;
+				}
+			}
+
+			
+			student.setStudentMarkDetails(studentMarkDetails);
+			if (dataValue.equals("update")) {
+				pgStudents.set(updateId - 1, student);
+			} else {
 				student.setStudentRegisterNumber(pgStudentRegisterId);
-				student.setStudentMarkDetails(studentMarkDetails);
-				if (dataValue.equals("update")) {
-					pgStudents.set(updateId - 1, student);
-				} else {
-					pgStudents.add(student);
-					pgStudentRegisterId++;
-				}
+				pgStudents.add(student);
+				pgStudentRegisterId++;
+			}
 
+		} else {
+
+			if (dataValue.equals("update")) {
+				ugStudents.set(updateId - 1, student);
 			} else {
-
-				if (dataValue.equals("update")) {
-					ugStudents.set(updateId - 1, student);
-				} else {
-					student.setStudentMarkDetails(studentMarkDetails);
-					student.setStudentRegisterNumber(ugStudentRegisterId);
-					ugStudents.add(student);
-					ugStudentRegisterId++;
-
-				}
+				student.setStudentMarkDetails(studentMarkDetails);
+				student.setStudentRegisterNumber(ugStudentRegisterId);
+				ugStudents.add(student);
+				ugStudentRegisterId++;
 
 			}
 
-		} catch (InputMismatchException inputMismatchException) {
-			System.out.println(inputMismatchException);
 		}
 
 	}
@@ -278,6 +380,7 @@ public class StudentManagement {
 				"HSC Schooling   : " + ugStudents.get(studentRegisterId).getStudentMarkDetails().getHscSchoolName());
 		System.out
 				.println("HSC Mark        : " + ugStudents.get(studentRegisterId).getStudentMarkDetails().getHscMark());
+		System.out.println(" ");
 
 	}
 
@@ -316,6 +419,7 @@ public class StudentManagement {
 				"UG College     : " + pgStudents.get(studentRegisterId).getStudentMarkDetails().getUgCollegeName());
 		System.out.println(
 				"UG Percentage  : " + pgStudents.get(studentRegisterId).getStudentMarkDetails().getUgPercentage());
+		System.out.println(" ");
 	}
 
 }
