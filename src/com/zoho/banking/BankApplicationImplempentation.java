@@ -29,15 +29,18 @@ public class BankApplicationImplempentation {
 				userId++;
 				System.out.println("Enter Deposit Amount\nNote:Your Deposit Amount Is Greater than 1000");
 				int amount = 0;
-				try {
-					amount = reader.nextInt();
-				} catch (InputMismatchException inputMismatchException) {
-					System.out.println(inputMismatchException);
+				amount = reader.nextInt();
+				boolean amountStatus = true;
+				if (amount < 1000) {
+					while (amountStatus) {
+						System.out.println("Minium Balance is 1000");
+						amount = reader.nextInt();
+						if (amount >= 1000) {
+							amountStatus = false;
+						}
+					}
 				}
-				if (amount <= 1000) {
-					System.out.println("Minium Balance is 1000");
 
-				}
 				bank.setCustomerPreviousBalance(amount);
 				bank.setCustomerCurrentBalance(amount);
 				String accountNumber = "";
@@ -54,46 +57,42 @@ public class BankApplicationImplempentation {
 				String userName = reader.next();
 				System.out.println("Enter userId");
 				int userIdNo = 0;
-				try {
-					userIdNo = reader.nextInt();
-				} catch (InputMismatchException inputMismatchException) {
-					System.out.println(inputMismatchException);
-				}
-
-				boolean userFound = BankService.findUser(bankDetails, userIdNo, userName);
-				if (userFound) {
-					System.out.println("1.DepositAmount\n2.Withdraw\n3.View Details");
-					try {
-						choice = reader.nextInt();
-					} catch (InputMismatchException inputMismatchException) {
-						System.out.println(inputMismatchException);
-					}
-
-					switch (choice) {
-					case 1:
-						System.out.println("Enter Your Deposit Amount");
-						int amount = reader.nextInt();
-						BankService.depositAmount(amount, userIdNo, bankDetails);
-						break;
-					case 2:
-						System.out.println("enter withdrawAmount");
-						int withdrawAmount = reader.nextInt();
-						BankService.withdraw(withdrawAmount, userIdNo, bankDetails);
-						break;
-					case 3:
-						BankService.viewDetails(userIdNo, bankDetails);
-						break;
-					default:
-						System.out.println("Invalid Input");
-						break;
-
-					}
-				} else if (userName.equalsIgnoreCase("admin") && userIdNo == 1234) {
+				userIdNo = reader.nextInt();
+				if (userName.equalsIgnoreCase("admin") && userIdNo == 1234) {
 					BankService.showAdminPage(bankDetails);
-				}
-
-				else {
+				} else if (bankDetails.size() == 0) {
 					System.out.println("Invalid UserName & userId");
+				} else {
+					boolean userFound = BankService.findUser(bankDetails, userIdNo, userName);
+					if (userFound) {
+						System.out.println("1.DepositAmount\n2.Withdraw\n3.View Details");
+						try {
+							choice = reader.nextInt();
+						} catch (InputMismatchException inputMismatchException) {
+							System.out.println(inputMismatchException);
+						}
+
+						switch (choice) {
+						case 1:
+							System.out.println("Enter Your Deposit Amount");
+							int amount = reader.nextInt();
+							BankService.depositAmount(amount, userIdNo, bankDetails);
+							break;
+						case 2:
+							System.out.println("enter withdrawAmount");
+							int withdrawAmount = reader.nextInt();
+							BankService.withdraw(withdrawAmount, userIdNo, bankDetails);
+							break;
+						case 3:
+							BankService.viewDetails(userIdNo, bankDetails);
+							break;
+						default:
+							System.out.println("Invalid Input");
+							break;
+
+						}
+					}
+
 				}
 			} else {
 				System.out.println("Invalid Input");
