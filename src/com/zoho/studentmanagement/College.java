@@ -11,7 +11,7 @@ public class College {
 		List<Student> studentDetails = new ArrayList<Student>();
 		Scanner reader = new Scanner(System.in);
 		StudentManagement studentManagement = new StudentManagement();
-
+		
 		char choice = ' ';
 
 		do {
@@ -19,6 +19,7 @@ public class College {
 
 			switch (userChoice) {
 			case 1:
+				
 				String dataValue = "add";
 				studentManagement.insertStudentData(dataValue);
 				break;
