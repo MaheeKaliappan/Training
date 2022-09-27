@@ -34,13 +34,10 @@ public class CalculatorPerformance {
 				if (numberString.charAt(position) != '=') {
 					tempChar = numberString.charAt(position);
 				}
-
-				// result = Integer.parseInt(tempString);
 				if (CalculatorPerformance.calculateNumberValue == 0) {
 					result = Integer.parseInt(tempString);
 					CalculatorPerformance.calculateNumberValue = result;
 					currentChar = numberString.charAt(position);
-					;
 					tempString = "";
 				} else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
 					CalculatorPerformance.calculateNumberValue = CalculatingValues
